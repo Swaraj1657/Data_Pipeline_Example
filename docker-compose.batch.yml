@@ -234,3 +234,16 @@ services:
       - OUTPUT_DIR=/opt/spark-data/output
     volumes:
       - ./data:/opt/spark-data
+
+  algorithm-dashboard:
+    build: ./algorithm_dashboard
+    container_name: algorithm-dashboard
+    depends_on:
+      - spark-app
+    ports:
+      - "5200:5200"
+    environment:
+      - OUTPUT_DIR=/opt/spark-data/output
+    volumes:
+      - ./data:/opt/spark-data
+      - ./services:/opt/services:ro
